@@ -1,0 +1,127 @@
+1.Earth
+🟢 Step 0: What is Earth?
+Earth is the planet we live on. You can think of it like a giant ball made of:
+
+Land – Mountains, deserts, forests, cities, villages
+
+Water – Oceans, rivers, lakes (about 70% of Earth is water!)
+
+Air – A layer of gases called the atmosphere (oxygen, nitrogen, etc.)
+
+Earth is always:
+
+Spinning on its own (one spin = 1 day)
+
+Moving around the Sun (one full circle = 1 year)
+
+You, me, animals, plants, oceans — we all live on this spinning ball.
+
+2.Space
+Space is the huge, dark area that begins just above Earth’s sky.
+You can think of it like a giant, endless black sea with no air, no sound, and no life — just stars, planets, and floating objects.
+
+✨ Key Points:
+Starts ~100 km above Earth
+That’s where our atmosphere becomes super thin — airplanes can’t go higher, and that’s where space begins.
+
+No Air or Sound
+Space is a vacuum — there’s no oxygen, no wind, and you can’t hear anything.
+
+Very Cold and Very Dark
+Since there’s no air to hold heat or scatter light, space is extremely cold and black.
+
+Full of Floating Things
+Like:
+
+🌍 Planets (like Earth, Mars)
+
+🌞 Stars (like our Sun)
+
+🛰 Satellites
+
+🪐 Moons, comets, space dust
+
+Imagine blowing up a balloon — Earth is like a small dot inside that giant balloon. The rest is all spac
+
+3.When something goes up into space and keeps circling around a planet (like Earth), it is said to be in an orbit.
+
+forever
+
+🛰 What things orbit Earth?
+The Moon – our natural satellite
+
+Satellites – human-made machines (we’ll get there next)
+
+Space stations – like the ISS where astronauts live
+
+4.🟢 Step 2: What is Orbit? (Restarted)
+Imagine this:
+You are standing on Earth.
+You throw a ball straight ahead (not up, not down).
+
+Normally, what happens?
+
+👉 The ball goes forward a bit, then falls to the ground because of gravity.
+
+Now imagine:
+You are on a very tall mountain — even above the clouds.
+
+You throw the ball super fast — not just a little throw — you throw it at 28,000 km/h (using a rocket).
+
+What happens now?
+
+👉 The ball still wants to fall down…
+👉 But it's going so fast forward that Earth curves away underneath it
+👉 So it never hits the ground — it keeps falling around the Earth
+
+This is called orbit:
+
+You’re always falling
+
+But you’re also moving forward so fast that you never hit the ground
+
+So you just keep going in a circle around Earth
+
+5.When we say a satellite is “falling around Earth” — it’s because gravity is pulling it down, but its speed keeps it going forward, so it keeps circling instead of crashing.
+
+6.🟢 Question:
+Why does orbit create a circular (or oval) path? Is it because forces are equal and opposite?
+
+✅ Answer:
+Yes, but let’s phrase it very precisely.
+
+An object (like a satellite) stays in orbit because two things are happening at the same time:
+
+Force	Direction	Role
+Gravity	⬇️ Pulls the satellite toward Earth’s center	Keeps it from flying away
+Inertia / Speed	➡️ Keeps the satellite moving forward	Keeps it from falling down
+
+So they are not exactly opposite in direction like a tug-of-war, but they are balanced in a way that makes the object curve around Earth.
+
+⚖️ Not equal-opposite like this:
+csharp
+Copy
+Edit
+⬅️ Force1      ➡️ Force2
+(This would cancel out and object stays still)
+🌀 But like this (curved path):
+pgsql
+Copy
+Edit
+➡️ Speed → tries to move straight
+⬇️ Gravity → pulls inward
+🎯 Together → object curves around Earth (orbit)
+That’s how a circular (or elliptical) motion happens:
+
+Always falling inwards
+
+But always moving forward fast enough to miss the Earth every second
+
+This principle is actually called:
+
+🧠 Centripetal force = inward pull (gravity)
+💨 Tangential velocity = sideways speed
+
+The combination makes the object move in a circle or oval — like a satellite.
+
+7.So the first problem is Urban Planning for Gurugram (Sector 14)
