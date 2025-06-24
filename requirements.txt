@@ -3,3 +3,4 @@ geemap
 rasterio
 numpy
 matplotlib
+python-dotenv

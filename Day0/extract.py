@@ -1,37 +1,109 @@
-'''
-This script will extract images of sector 14 using google earth engine.
-'''
+"""
+NOTE:
+1.We will using Google Earth Engine API to extract the images of sector 14, Gurugram.
+"""
+
+
 import ee
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 # Initialize Earth Engine with your project ID
-ee.Initialize(project='chatbot-for-enterprise-445604')
-# Define the bounding box for Sector 14, Gurugram
-sector14_bbox = ee.Geometry.Rectangle([77.018, 28.458, 77.030, 28.469])
+ee.Initialize(project=os.getenv('PROJECT_ID'))
 
-# Filter Sentinel-2 image for January 2024
-sentinel_jan = (
-    ee.ImageCollection("COPERNICUS/S2_SR")  # Sentinel-2 Level 2A surface reflectance
-    .filterBounds(sector14_bbox)            # Only images that intersect Sector 14
-    .filterDate("2024-01-01", "2024-01-20")  # Around mid-Jan
-    .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 10))  # Only low-cloud images
-    .sort("CLOUDY_PIXEL_PERCENTAGE")        # Lowest-cloud image first
-    .first()                                # Get just 1 image
+# Define the bounding box for Sector 14, Gurugram
+sector14_bbox = ee.Geometry.Rectangle([77.015, 28.455, 77.035, 28.472])
+
+print("Searching for Sentinel-2 images using updated collection...")
+
+# Use the new Sentinel-2 collection (non-deprecated)
+collection = (
+    ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")  # Updated collection
+    .filterBounds(sector14_bbox)
+    .filterDate("2024-01-01", "2024-01-31")
+    .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 30))
 )
-# Select RGB bands (B4=Red, B3=Green, B2=Blue) and clip to bounding box
+
+print(f"Number of images found: {collection.size().getInfo()}")
+
+# Get the best image (least cloudy)
+sentinel_jan = collection.sort("CLOUDY_PIXEL_PERCENTAGE").first()
+
+# Check if we found any images
+image_info = sentinel_jan.getInfo()
+if image_info is None:
+    print("No images found! Trying with more lenient filters...")
+    
+    # Try with wider date range and more lenient cloud filter
+    collection_backup = (
+        ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+        .filterBounds(sector14_bbox)
+        .filterDate("2023-12-01", "2024-02-29")
+        .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 50))
+    )
+    
+    print(f"Backup search found: {collection_backup.size().getInfo()} images")
+    sentinel_jan = collection_backup.sort("CLOUDY_PIXEL_PERCENTAGE").first()
+
+# Verify we have an image before proceeding
+image_check = sentinel_jan.getInfo()
+if image_check is None:
+    print("ERROR: Still no images found. Check your coordinates and date range.")
+    exit()
+
+# Convert timestamp to readable date
+import datetime
+timestamp_ms = image_check['properties']['system:time_start']
+date_used = datetime.datetime.fromtimestamp(timestamp_ms/1000).strftime('%Y-%m-%d')
+
+print(f"Using image from: {date_used}")
+print(f"Cloud coverage: {image_check['properties']['CLOUDY_PIXEL_PERCENTAGE']}%")
+
+# Select RGB bands and clip to bounding box
 rgb_jan = (
     sentinel_jan
-    .select(['B4', 'B3', 'B2'])   # Only keep RGB bands
-    .clip(sector14_bbox)         # Clip image to Sector 14 area
-)
-# Export image to your Google Drive as GeoTIFF
-task = ee.batch.Export.image.toDrive(
-    image=rgb_jan,
-    description='sector14_jan_rgb',
-    folder='earth_engine',          # This folder will appear in your Google Drive
-    fileNamePrefix='sector14_jan',  # File will be sector14_jan.tif
-    scale=10,                       # Sentinel-2 resolution = 10 meters/pixel
-    region=sector14_bbox,          # Export only our bounding box
-    fileFormat='GeoTIFF'
+    .select(['B4', 'B3', 'B2'])   # RGB bands
+    .clip(sector14_bbox)
 )
 
+# Apply scaling for better visualization
+rgb_jan_scaled = rgb_jan.multiply(0.0001).multiply(255).uint8()
+
+# Export image to Google Drive
+task = ee.batch.Export.image.toDrive(
+    image=rgb_jan_scaled,
+    description='sector14_updated_collection',
+    folder='earth_engine',
+    fileNamePrefix=f'sector14_{date_used}',
+    scale=10,
+    region=sector14_bbox,
+    fileFormat='GeoTIFF',
+    maxPixels=1e9
+)
+
+print("Starting export task...")
 task.start()
+print(f"Task started with ID: {task.id}")
+print("Check your Google Drive 'earth_engine' folder for the exported image.")
+
+# Monitor task status
+import time
+print("Monitoring task status...")
+while task.active():
+    status = task.status()['state']
+    print(f"Task status: {status}")
+    if status in ['COMPLETED', 'FAILED']:
+        break
+    time.sleep(5)
+
+final_status = task.status()
+print(f"Final task status: {final_status['state']}")
+if final_status['state'] == 'COMPLETED':
+    print("✅ Export completed successfully!")
+    if 'destination_uris' in final_status:
+        print(f"📁 Google Drive link: {final_status['destination_uris'][0]}")
+elif final_status['state'] == 'FAILED':
+    print("❌ Export failed!")
+    if 'error_message' in final_status:
+        print(f"Error: {final_status['error_message']}")

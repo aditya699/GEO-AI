@@ -1,0 +1,4 @@
+1.Command to install the requirements
+uv pip install -r requirements.txt
+
+2.

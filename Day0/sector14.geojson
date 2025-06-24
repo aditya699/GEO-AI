@@ -1,0 +1,193 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2025-06-24T02:57:29Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "relation/3577943",
+        "boundary": "place",
+        "is_in:city": "Gurgaon",
+        "is_in:district": "Gurgaon District",
+        "name": "Sector 14",
+        "place": "neighbourhood",
+        "type": "boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.0439461,
+              28.4684192
+            ],
+            [
+              77.0458308,
+              28.4697483
+            ],
+            [
+              77.0485234,
+              28.4707445
+            ],
+            [
+              77.0485843,
+              28.470762
+            ],
+            [
+              77.0492354,
+              28.4710512
+            ],
+            [
+              77.050005,
+              28.471356
+            ],
+            [
+              77.0512071,
+              28.4717616
+            ],
+            [
+              77.0524742,
+              28.4722068
+            ],
+            [
+              77.0535205,
+              28.4726016
+            ],
+            [
+              77.0554358,
+              28.4734241
+            ],
+            [
+              77.0534223,
+              28.4758626
+            ],
+            [
+              77.0499937,
+              28.4800444
+            ],
+            [
+              77.0494004,
+              28.4814748
+            ],
+            [
+              77.0490452,
+              28.4809201
+            ],
+            [
+              77.0463887,
+              28.4778778
+            ],
+            [
+              77.0429769,
+              28.47403
+            ],
+            [
+              77.0378622,
+              28.4683624
+            ],
+            [
+              77.033792,
+              28.4638508
+            ],
+            [
+              77.0369056,
+              28.4647495
+            ],
+            [
+              77.037865,
+              28.465271
+            ],
+            [
+              77.0413474,
+              28.467164
+            ],
+            [
+              77.0439461,
+              28.4684192
+            ]
+          ]
+        ]
+      },
+      "id": "relation/3577943"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "relation/3633982",
+        "boundary": "place",
+        "is_in:city": "Manesar",
+        "is_in:county": "Gurugram District",
+        "landuse": "industrial",
+        "name": "Sector 14",
+        "place": "neighbourhood",
+        "type": "boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.9098897,
+              28.3867902
+            ],
+            [
+              76.8934127,
+              28.3868253
+            ],
+            [
+              76.8932719,
+              28.3799132
+            ],
+            [
+              76.8965668,
+              28.379882
+            ],
+            [
+              76.9048202,
+              28.3797902
+            ],
+            [
+              76.9096825,
+              28.3797241
+            ],
+            [
+              76.9098897,
+              28.3867902
+            ]
+          ]
+        ]
+      },
+      "id": "relation/3633982"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/312920687",
+        "@relations": [
+          {
+            "role": "admin_centre",
+            "rel": 3577943,
+            "reltags": {
+              "boundary": "place",
+              "is_in:city": "Gurgaon",
+              "is_in:district": "Gurgaon District",
+              "name": "Sector 14",
+              "place": "neighbourhood",
+              "type": "boundary"
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.0471827,
+          28.473784
+        ]
+      },
+      "id": "node/312920687"
+    }
+  ]
+}
