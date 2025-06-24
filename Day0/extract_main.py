@@ -198,13 +198,31 @@ def process_rgb_image(sentinel_image, geometry):
     B2	Blue	10m
 
     We also clip the image to our polygon, so we don't download the entire tile (which may be large or include other areas).
+   
+    ✅ Bands Needed for NDVI:
+    1.B8 → Near-Infrared (NIR)
+    2.B4 → Red
+
+    NDVI stands for:
+
+    1.Normalized Difference Vegetation Index
+    2.It is just a formula to measure how green a place is.
+
+    1.Why Do We Use It?
+    2.Because:
+    3.Plants absorb red light (for photosynthesis)
+    4.Plants reflect near-infrared (NIR) light (we can't see it, but satellites can)
+    5.So we compare how much NIR vs Red is coming from a pixel.
+
+    NDVI = (NIR - Red) / (NIR + Red)
+     
     """
     logger.info("Processing RGB bands...")
     
     # Select RGB bands and clip to Sector 14
-    rgb_image = (
+    ndvi_image = (
         sentinel_image
-        .select(['B4', 'B3', 'B2'])  # Red, Green, Blue
+        .select(['B8', 'B4'])  # NIR and Red
         .clip(geometry)        # Clip to exact boundary
     )
     
@@ -229,10 +247,10 @@ def process_rgb_image(sentinel_image, geometry):
     )
 
     '''
-    rgb_scaled = rgb_image.multiply(0.0001).pow(0.5).multiply(255).uint8()
+    ndvi_scaled = ndvi_image.multiply(0.0001).pow(0.5).multiply(255).uint8()
     
     logger.info("RGB image processed successfully")
-    return rgb_scaled
+    return ndvi_scaled
 
 def export_image_to_drive(image, date_used, geometry):
     """Export the processed image to Google Drive"""
