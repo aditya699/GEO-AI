@@ -28,8 +28,8 @@ import rasterio
 import matplotlib.pyplot as plt
 
 # Define file paths
-dec_path = "polygon_swir_nir/sector14_2023-12-05.tif"
-june_path = "polygon_swir_nir/sector14_2024-06-12.tif"
+jan_2020_path = "polygon_swir_nir/sector14_2020-01-30.tif"
+jan_2025_path = "polygon_swir_nir/sector14_2025-01-28.tif"
 
 # Function to compute NDBI
 def compute_ndbi(tif_path):
@@ -42,9 +42,9 @@ def compute_ndbi(tif_path):
     return (swir - nir) / denom
 
 # Compute NDBI for both dates
-ndbi_dec = compute_ndbi(dec_path)
-ndbi_june = compute_ndbi(june_path)
+ndbi_jan_2020 = compute_ndbi(jan_2020_path)
+ndbi_jan_2025 = compute_ndbi(jan_2025_path)
 
-print("Average NDBI - Dec 2023:", round(ndbi_dec.mean(), 4))
-print("Average NDBI - June 2024:", round(ndbi_june.mean(), 4))
-print("Change:", round(ndbi_june.mean() - ndbi_dec.mean(), 4))
+print("Average NDBI - Jan 2020:", round(ndbi_jan_2020.mean(), 4))
+print("Average NDBI - Jan 2025:", round(ndbi_jan_2025.mean(), 4))
+print("Change:", round(ndbi_jan_2025.mean() - ndbi_jan_2020.mean(), 4))

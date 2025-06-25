@@ -16,9 +16,13 @@ def compute_avg_ndvi(path):
     # Compute mean NDVI, ignoring nan
     return np.nanmean(ndvi)
 
-dec_ndvi = compute_avg_ndvi("polygon_red_nir/sector14_2023-12-05.tif")
-jun_ndvi = compute_avg_ndvi("polygon_red_nir/sector14_2024-06-12.tif")
+# dec_ndvi = compute_avg_ndvi("polygon_red_nir/sector14_2023-12-05.tif")
+# jun_ndvi = compute_avg_ndvi("polygon_red_nir/sector14_2024-06-12.tif")
 
-print(f"Average NDVI - Dec 2023: {dec_ndvi:.4f}")
-print(f"Average NDVI - June 2024: {jun_ndvi:.4f}")
-print(f"Change: {jun_ndvi - dec_ndvi:.4f}")
+jan_ndvi_2020 = compute_avg_ndvi("../ndvi_r_infred/sector14_2020-01-30.tif")
+jan_ndvi_2025 = compute_avg_ndvi("../ndvi_r_infred/sector14_2025-01-28.tif")
+
+
+print(f"Average NDVI - Jan 2020: {jan_ndvi_2020:.4f}")
+print(f"Average NDVI - Jan 2025: {jan_ndvi_2025:.4f}")
+print(f"Change: {jan_ndvi_2025 - jan_ndvi_2020:.4f}")

@@ -44,8 +44,8 @@ def compute_ndvi(path):
     return (nir - red) / denom
 
 # Compute NDVI for both dates
-ndvi_dec = compute_ndvi("polygon_red_nir/sector14_2023-12-05.tif")
-ndvi_jun = compute_ndvi("polygon_red_nir/sector14_2024-06-12.tif")
+ndvi_dec = compute_ndvi("../ndvi_r_infred/sector14_2020-01-30.tif")
+ndvi_jun = compute_ndvi("../ndvi_r_infred/sector14_2025-01-28.tif")
 
 # Plot side-by-side with proper colorbar positioning
 fig, axes = plt.subplots(1, 2, figsize=(14, 6))
@@ -53,11 +53,11 @@ fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 vmin, vmax = -1, 1
 
 axes[0].imshow(ndvi_dec, cmap="RdYlGn", vmin=vmin, vmax=vmax)
-axes[0].set_title("NDVI - Dec 2023")
+axes[0].set_title("NDVI - Jan 2020")
 axes[0].axis("off")
 
 im = axes[1].imshow(ndvi_jun, cmap="RdYlGn", vmin=vmin, vmax=vmax)
-axes[1].set_title("NDVI - June 2024")
+axes[1].set_title("NDVI - Jan 2025")
 axes[1].axis("off")
 
 # Create colorbar with proper spacing
